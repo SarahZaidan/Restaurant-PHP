@@ -1,0 +1,554 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 17, 2022 at 09:21 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `restaurant`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `ADID` int(11) NOT NULL,
+  `ADNAME` char(50) DEFAULT NULL,
+  `USERNAME` varchar(32) DEFAULT NULL,
+  `PASSWORD` varchar(32) DEFAULT NULL,
+  `EMAIL` varchar(70) DEFAULT NULL,
+  `PHONE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`ADID`, `ADNAME`, `USERNAME`, `PASSWORD`, `EMAIL`, `PHONE`) VALUES
+(1, 'admin', 'admin1', 'admin1', 'admin@admin.com', 12345678);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adv`
+--
+
+CREATE TABLE `adv` (
+  `EVENTDES` varchar(100) DEFAULT NULL,
+  `ADVID` int(11) NOT NULL,
+  `ITEMID` varchar(20) DEFAULT NULL,
+  `PICTURE` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `adv`
+--
+
+INSERT INTO `adv` (`EVENTDES`, `ADVID`, `ITEMID`, `PICTURE`) VALUES
+('updateddd', 1, '025', 'image/021.jpg'),
+('Enjoy 50% off on our Chicken satay!', 2, '012', 'image/023.jpg'),
+('Enjoy 70% off on our Beef Yakisoba!', 3, '032', 'image/024.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `CUSTID` int(11) NOT NULL,
+  `ITEMID` varchar(20) NOT NULL,
+  `COUNT` int(2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `CUSTID` int(11) NOT NULL,
+  `CUSTNAME` char(50) DEFAULT NULL,
+  `USERNAME` varchar(23) DEFAULT NULL,
+  `PASSWORD` varchar(32) DEFAULT NULL,
+  `EMAIL` varchar(70) DEFAULT NULL,
+  `ADDRESS` varchar(100) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `PHONE` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`CUSTID`, `CUSTNAME`, `USERNAME`, `PASSWORD`, `EMAIL`, `ADDRESS`, `DOB`, `PHONE`) VALUES
+(1, 'Sarah', 'Sarah', '1590', 's@gmail.com', '12 R.st', '2002-03-02', 70123456),
+(2, 'Ali', 'Ali', 'ali', 'ali@email.com', '10', '1999-10-22', 3125478),
+(3, 'Dana', 'Dana', 'd123', 'dana1@email.com', '55 D.st', '1978-08-06', 81452369),
+(4, 'Alia', 'Alia', '1111', 'alia@outlook.com', '145 F.st', '1965-09-11', 71457896),
+(5, 'Daniel', 'DE123', '1111', 'DQ@outlook.com', '59 G.st', '2012-10-05', 81475963),
+(6, 'Jana', '3434', '0000', 'jana@email.com', '90 G.st', '2005-10-23', 81002255),
+(7, 'jameel', 'Joo', '0000', 'joo@gmail.com', ' G.st', '2005-10-23', 81002255),
+(9, 'ismail', 'isamil', 'is', 'email@email.com', '123', '2022-05-04', 12345678);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `entity_11`
+--
+
+CREATE TABLE `entity_11` (
+  `EVENTDES` varchar(200) DEFAULT NULL,
+  `PICTURE` varchar(500) DEFAULT NULL,
+  `EVENTID` int(11) NOT NULL,
+  `EVENTNAME` varchar(50) NOT NULL,
+  `MINPRICE` decimal(20,0) NOT NULL,
+  `MAXPRICE` decimal(20,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `entity_11`
+--
+
+INSERT INTO `entity_11` (`EVENTDES`, `PICTURE`, `EVENTID`, `EVENTNAME`, `MINPRICE`, `MAXPRICE`) VALUES
+('With a variety of packages for every budget and group size, book your party today for your best birthday ever.', 'image/E1.jpg', 1, 'Birthdays', '500000', '800000'),
+('Join us every Friday for a fun karaoke event and enjoy our drinks at a discounted price. ', 'image/E3.jpg', 3, 'Karaoke Night ', '75000', '100000'),
+('event des', 'image/E2.jpg', 4, 'event1', '1234', '12345');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item`
+--
+
+CREATE TABLE `item` (
+  `ITEMNAME` char(50) DEFAULT NULL,
+  `ITEMID` varchar(20) NOT NULL,
+  `MENUID` int(11) DEFAULT NULL,
+  `PRICE` decimal(20,2) DEFAULT NULL,
+  `INGREDIENTS` varchar(1000) DEFAULT NULL,
+  `PICTURE` varchar(500) DEFAULT NULL,
+  `DISCOUNT` smallint(6) DEFAULT NULL,
+  `DISPER` int(11) DEFAULT NULL,
+  `RATINGS` int(11) DEFAULT NULL,
+  `RATE` decimal(3,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`ITEMNAME`, `ITEMID`, `MENUID`, `PRICE`, `INGREDIENTS`, `PICTURE`, `DISCOUNT`, `DISPER`, `RATINGS`, `RATE`) VALUES
+('SHRIMP DYNAMITE', '011', 1, '139000.00', 'Spicy tempura shrimps, seeds | Served with dynamite sauce', 'image/011', 1, 10, 0, '0.00'),
+('CHICKEN TENDER', '0110', 1, '139000.00', 'Asian styled crispy chicken tenders | Served with honey mustard', 'image/0110', 1, 14, 0, '0.00'),
+('CHICKEN WINGS (6PCS)', '0111', 1, '139000.00', 'Fried Coating Wings | Served With Your Choice', 'image/0111', 1, 14, 0, '0.00'),
+('Served with sweet chili', '0112', 1, '139000.00', 'MIXED VEGETABLES spring roll (4PCS)', 'image/0112', 1, 14, 0, '0.00'),
+('EDAMAME', '0113', 1, '91000.00', 'Steamed soya beans Served with sea salt and lemon zest', 'image/0113', 0, 0, 0, '0.00'),
+('CHICKEN SATAY', '012', 1, '140500.00', '3 grilled chicken skewers | Served with Thai peanut butter sauce', 'image/012', 1, 15, 0, '0.00'),
+('SHRIMP DUMPLING', '013', 1, '121000.00', 'Steamed vegetables mixed with shrimps wrapped in gyoa with your choice of soya sauce or sweet chili', 'image/013', 0, 0, 0, '0.00'),
+('CHINESE CHICKEN DUMPLING', '014', 1, '85000.00', 'Chicken mixed vegetables wrapped in wanton', 'image/014', 0, 0, 0, '0.00'),
+('SALMON TATAKI', '015', 1, '178000.00', 'Flamed salmon served with tataki sauce', 'image/015', 0, 0, 0, '0.00'),
+('chicken wrap', '016', 1, '136000.00', 'chicken wrap', 'image/016', 0, 0, 0, '0.00'),
+('SHRIMP TEMPURA', '017', 1, '126000.00', 'Deep fried shrimps mixed with tempura | Served with zucchini and onion rings', 'image/017', 0, 0, 0, '0.00'),
+('Walnut Shrimp', '018', 1, '141000.00', 'Crunchy battered shrimps marinated in a sweet', 'image/018', 0, 0, 0, '0.00'),
+('Broccoli Beef', '021', 2, '129250.00', 'Broccoli Beef', 'image/021', 1, 10, 0, '0.00'),
+('MUSHROOM STEAK', '0211', 2, '120000.00', 'Cooked marinated beef wok, mushrooms, mixed vegetables | Served with black smoked sauce, served with steamed rice.', 'image/0211', 1, 10, 1, '5.00'),
+('Szechuan Beef', '0212', 2, '67000.00', 'Szechuan Beef', 'image/0212', 0, 0, 1, '4.81'),
+('KUNG PAO CHICKEN', '022', 2, '139000.00', 'The classic Chinese dish in Sichuan cuisine made with spicy caramelized chicken, chili pods, and peanuts, served with steamed rice', 'image/022', 0, 0, 0, '0.00'),
+('SHRIMP SWEET AND SOUR', '023', 2, '121000.00', 'Crunchy battered shrimps marinated in a sweet and sour sauce with bell peppers, pineapples and yellow onions, served with steamed rice.', 'image/023', 0, 0, 0, '0.00'),
+('CHICKEN SWEET AND SOUR', '024', 2, '85000.00', 'Crunchy battered chicken marinated in a sweet and sour sauce with bell peppers, pineapples and yellow onions', 'image/024', 0, 0, 0, '0.00'),
+('MONGOLIAN BEEF', '025', 2, '178000.00', 'Thinly sliced caramelized beef wok stir-fried in a savory brown sauce, tossed with green onions, served with steamed rice.', 'image/025', 0, 0, 0, '0.00'),
+('mongolin chicken', '026', 2, '136000.00', 'mongolian chicken', 'image/026', 0, 0, 0, '0.00'),
+('CHICKEN CASHEW NUTS', '027', 2, '127000.00', 'Marinated chicken slices cooked with mixed vegetables, cashew nuts, served with steamed rice.', 'image/027', 0, 0, 0, '0.00'),
+('LEMON CHICKEN', '028', 2, '141000.00', 'Marinated chicken cooked with ginger and sliced lemon | Served with Thai lemon sauce, served with steamed rice.', 'image/028', 0, 0, 0, '0.00'),
+('CHICKEN CHAW MEEN', '031', 3, '91000.00', 'Egg noodles, marinated chicken breast, garlic, ginger, pepper, spring onions, carrots, and soy sauce', 'image/031', 0, 0, 0, '0.00'),
+('BEEF YAKISOBA', '032', 3, '139000.00', 'Soba noodles, marinated beef, white onions, carrots, and cabbage with yakisoba sauce', 'image/032', 1, 10, 2, '4.80'),
+('VEGGY NOODLES', '033', 3, '139000.00', 'Egg noodles, pepper, mushroom, broccoli, and ginger with WOK TOWN sauce', 'image/033', 0, 0, 1, '4.85'),
+('THAI CHICKEN AND GINGER', '034', 3, '121000.00', 'Marinated chicken, shitake mushroom, fresh ginger, garlic, white onions, rice stick noodles, and spring onions', 'image/034', 0, 0, 1, '4.75'),
+('HOISIN BEEF NOODLES', '035', 3, '85000.00', 'Minced beef, white onions, garlic, Chinese cabbage, carrots, egg noodles, spring onions', 'image/035', 0, 0, 0, '0.00'),
+('SINGAPORIEN NOODLES', '036', 3, '178000.00', 'Chicken strips, red peppers, carrots, rice noodles served with Asian curry sauce', 'image/036', 0, 0, 0, '0.00'),
+('SHRIMP STEEL FRIED', '037', 3, '136000.00', 'Shrimps, green cabbage, garlic, ginger, carrots, lemon juice, soya sauce', 'image/037', 0, 0, 0, '0.00'),
+('RED CHILI SHRIMP', '038', 3, '127000.00', 'RED CHILI SHRIMP', 'image/038', 0, 0, 0, '0.00'),
+('BEEF NOODLES', '039', 3, '141000.00', 'BEEF NOODLES', 'image/039', 0, 0, 0, '0.00'),
+('CHICKEN TEPPANYAKI', '041', 4, '98000.00', 'Grilled chicken in teppanyaki sauce, served with fried rice and grilled vegetables', 'image/041', 0, 0, 0, '0.00'),
+('BEEF TEPPANYAKI', '042', 4, '123000.00', 'Hand-cut beef, mushroom served with fried rice and grilled vegetables', 'image/042', 0, 0, 0, '0.00'),
+('SALMON TEPPANYAKI', '043', 4, '99000.00', 'Grilled salmon and spring onions served with fried rice and grilled vegetables', 'image/043', 0, 0, 1, '4.70'),
+('MARINA TEPPANYAKI', '044', 4, '67000.00', 'Fresh salmon, shrimp, white fish served with fried rice and grilled vegetables', 'image/044', 0, 0, 0, '0.00'),
+('HONOLULU SALMON', '051', 5, '91000.00', 'Spicy Salmon, spring onions, Cucumber, Red Onions, Edamame, Mango, Tobico, Spicy Ponzu, Crispy Onions, Crunchy crispy | Served with white rice.', 'image/051', 0, 0, 0, '0.00'),
+('CALIFORNIA POKE', '052', 5, '139000.00', 'Crazy mix, shrimp, mixed greens, crispy tampura, pineapple, quinoa, mango, orange tobico', 'image/052', 0, 0, 0, '0.00'),
+('SALMON SALAD POKE', '053', 5, '139000.00', 'Salmon, cucumber, carrots, edamame, Radis, norri, avocado, sesame seeds, pickled ginger, white rice, yummi sauce', 'image/053', 0, 0, 0, '0.00'),
+('UMAMI AHI CLASSIC', '054', 5, '121000.00', 'Ahi tuna, edamame, scallions, crashed peanut, cucumber, ponzu sauce, ginger, sesame seeds, garlic crisps, shredded nori, white rice.', 'image/054', 0, 0, 0, '0.00'),
+('CHICKEN KATSU', '055', 5, '85000.00', 'Chicken Katsu, pickled ginger, Edamame, spring onions, Cucumber, Ton Katsu Sauce, Sesame Seeds. Served with white rice', 'image/055', 0, 0, 0, '0.00'),
+('SWEET GINGER CHICKEN', '056', 5, '178000.00', 'All-natural chicken breast, cucumber, scallions, edamame, orange, cilantro, sesame seeds | Served with freekeh, mixed greens, sweet ginger sauce, wonton crisps', 'image/056', 0, 0, 0, '0.00'),
+('FILLET STEAK', '061', 6, '127000.00', 'FILLET STEAK', 'image/061', 0, 0, 0, '0.00'),
+('TARRGON CHICKEN', '062', 6, '141000.00', 'Chicken breast, mushrooms, potatoes, spring onions served with tarragon sauce', 'image/062', 0, 0, 0, '0.00'),
+('STEAK AND FRIES', '063', 6, '98000.00', 'Beef fillet, mixed greens, seasoning French fries, served with café de Paris', 'image/063', 0, 0, 1, '4.75'),
+('GRILLED CHICKEN', '064', 6, '123000.00', 'Chicken breast, mixed lettuces, green beans, and mushrooms sauce', 'image/064', 0, 0, 0, '0.00'),
+('MISO SALMON', '065', 6, '99000.00', 'Marinated salmon, Asian salad served with miso sauce and steamed rice', 'image/065', 0, 0, 0, '0.00'),
+('CHICKEN CURRY', '066', 6, '67000.00', 'Marinated chicken slices cooked with potato cubes served with green curry sauce and steamed rice', 'image/066', 0, 0, 0, '0.00'),
+('BEEF STROGANOFF', '067', 6, '91000.00', 'Tender beef and mushrooms served with rice and almonds', 'image/067', 0, 0, 0, '0.00'),
+('KATSU CHICKEN', '068', 6, '139000.00', 'Breaded chicken escalope, Rocca, cherry tomatoes served with French fries', 'image/068', 0, 0, 0, '0.00'),
+('BEEF QUESADILLAS', '071', 6, '139000.00', 'Smoked beef, RGY pepper, white onion, mixed cheese served with sour cream', 'image/071', 0, 0, 0, '0.00'),
+('CHICKEN QUESADILLAS', '072', 6, '121000.00', 'Smoked chicken, RGY pepper, white onions, mixed cheese served with sour cream', 'image/072', 0, 0, 0, '0.00'),
+('CHICKEN BURGER', '073', 6, '85000.00', 'Grilled chicken breast, lettuce, tomatoes, pickles, garlic mayo', 'image/073', 0, 0, 0, '0.00'),
+('AMERICAN BURGER', '074', 6, '178000.00', 'Beef patty, grilled onions, grilled tomatoes, cheddar cheese, iceberg, wok town sauce', 'image/074', 0, 0, 0, '0.00'),
+('WOK TOWN BURGER', '075', 6, '136000.00', 'Your choice of Beef or chicken patty, swiss cheese, grilled spring onions, avocado, teriyaki sauce', 'image/075', 0, 0, 0, '0.00'),
+('SWISS MUSHROOM', '076', 6, '127000.00', 'Beef patty, swiss cheese, iceberg, mushroom sauce', 'image/076', 0, 0, 0, '0.00'),
+('STEAK SANDWICH', '077', 6, '141000.00', 'Roasted steak with tomatoes, mayo, Swiss cheese and mustard', 'image/077', 0, 0, 0, '0.00'),
+('CAJUN CHICKEN', '078', 6, '98000.00', 'Cajun chicken Ciabatta bread, grilled tomatoes', 'image/078', 0, 0, 0, '0.00'),
+('Asian Bowl', '081', 8, '153000.00', 'Smoked salmon, Mixed Greens, purple cabbage, white cabbage, rice noodles, shredded carrots, cilantro, toasted sesame seeds, toasted peanuts, pickled ginger, soy beans | Served spicy ginger', 'image/081', 0, 0, 0, '0.00'),
+('Rainbow Salad', '082', 8, '106000.00', 'Kale, arugula, quinoa, apples, avocado, pomegranate seeds, broccoli ,cherry tomatoes, roasted sweet potatoes, mint leaves | Served with classic balsamic dressing', 'image/082', 0, 0, 0, '0.00'),
+('Fabulous Freekeh', '083', 8, '121000.00', 'Kale, mixed greens, freekeh, grilled chicken breast, dried figs, toasted slivered almonds, toasted cashew nuts, beetroots, pomegranate seeds | Served with cilantro cumin dressing', 'image/083', 0, 0, 0, '0.00'),
+('Chicken Caesar Salad', '084', 8, '119000.00', 'Grilled chicken breast, crouton, Romanian lettuce, iceberg, cherry tomatoes | Served with Caesar sauce', 'image/084', 0, 0, 0, '0.00'),
+('Sweet November', '085', 8, '114000.00', 'Arugula, goat cheese, Romanian lettuce, pumpkin seeds,, dried cranberries, pear, walnuts | Served with classic balsamic dressing', 'image/085', 0, 0, 0, '0.00'),
+('Wok Town Salad', '086', 8, '121000.00', 'Grilled chicken, Romanian lettuce, mixed greens, avocado, shredded carrots, crunchy noodles, orange chunks, cherry tomatoes, toasted sesame seeds, toasted peanuts | Served with Asian sesame dressing', 'image/086', 0, 0, 0, '0.00'),
+('Halloumi Salad', '087', 8, '99000.00', 'Mixed greens, spring onions, pomegranate seeds, black olives, grilled halloumi | Served with lemon oil and fresh mint', 'image/087', 0, 0, 0, '0.00'),
+('Nicoise Salad', '088', 8, '106000.00', 'Tuna, mixed greens, green beans, boiled eggs, potatoes | Served with lemon oil', 'image/088', 0, 0, 0, '0.00'),
+('Green Asian Salad', '089', 8, '80000.00', 'Mixed lettuces, tomatoes, cucumbers', 'image/089', 0, 0, 0, '0.00'),
+('Shrimp Fried Rice', '091', 9, '136000.00', 'Shrimp Fried Rice', 'image/091', 0, 0, 0, '0.00'),
+('Chicken Fried Rice', '092', 9, '114000.00', 'Chicken Fried Rice', 'image/092', 0, 0, 0, '0.00'),
+('Pineapple Fried Rice', '093', 9, '98000.00', 'Pineapple Fried Rice', 'image/093', 0, 0, 0, '0.00'),
+('Vegetable Fried Rice', '094', 9, '99000.00', 'Vegetable Fried Rice', 'image/094', 0, 0, 0, '0.00'),
+('Fried Rice', '095', 9, '57000.00', 'Fried Rice', 'image/095', 0, 0, 0, '0.00'),
+('Wanton', '101', 10, '85000.00', 'Wanton', 'image/101', 0, 0, 0, '0.00'),
+('Hot Sweet & Sour', '102', 10, '82000.00', 'Hot Sweet & Sour', 'image/102', 0, 0, 0, '0.00'),
+('Chicken Corn', '103', 10, '85000.00', 'Chicken Corn', 'image/103', 0, 0, 0, '0.00'),
+('Shrimp Soup', '104', 10, '114000.00', 'Shrimp Soup', 'image/104', 0, 0, 0, '0.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `itemorder`
+--
+
+CREATE TABLE `itemorder` (
+  `ITEMID` varchar(20) NOT NULL,
+  `ORDERID` int(11) NOT NULL,
+  `COUNT` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `itemorder`
+--
+
+INSERT INTO `itemorder` (`ITEMID`, `ORDERID`, `COUNT`) VALUES
+('0211', 3, 1),
+('032', 1, 3),
+('033', 1, 3),
+('033', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `itemrating`
+--
+
+CREATE TABLE `itemrating` (
+  `CUSTID` int(11) NOT NULL,
+  `ITEMID` varchar(20) NOT NULL,
+  `RATING` decimal(3,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `itemrating`
+--
+
+INSERT INTO `itemrating` (`CUSTID`, `ITEMID`, `RATING`) VALUES
+(2, '032', '4.80');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `MENUNAME` char(50) DEFAULT NULL,
+  `MENUID` int(11) NOT NULL,
+  `PICTURE` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`MENUNAME`, `MENUID`, `PICTURE`) VALUES
+('APPETIZERS', 1, 'image/menu1'),
+('WOK', 2, 'image/menu2'),
+('NOODLES', 3, 'image/menu3'),
+('TEPPANYAKI', 4, 'image/menu4'),
+('POKE', 5, 'image/menu5'),
+('MAIN DISHES', 6, 'image/menu6'),
+('SNACKS', 7, 'image/menu7'),
+('SALADS', 8, 'image/menu8'),
+('FRIED RICE', 9, 'image/menu9'),
+('SOUPS', 10, 'image/menu10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ordertb`
+--
+
+CREATE TABLE `ordertb` (
+  `ORDERID` int(11) NOT NULL,
+  `CUSTID` int(11) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `TOTAL` decimal(20,2) DEFAULT NULL,
+  `orderdate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ordertb`
+--
+
+INSERT INTO `ordertb` (`ORDERID`, `CUSTID`, `STATUS`, `TOTAL`, `orderdate`) VALUES
+(1, 1, 4, '834000.00', '2022-05-17 06:54:01'),
+(2, 2, 2, '139000.00', '2022-05-17 07:05:50'),
+(3, 2, 3, '99000.00', '2022-05-17 07:07:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `RATINGID` int(11) NOT NULL,
+  `CUSTID` int(11) NOT NULL,
+  `VISITRATE` decimal(2,1) DEFAULT NULL,
+  `FEEDBACK` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`RATINGID`, `CUSTID`, `VISITRATE`, `FEEDBACK`) VALUES
+(1, 4, '4.1', 'Excellent food. Menu is extensive and seasonal to a particularly high standard. Definitely fine dining. It can be expensive but worth it and they do different deals on different nights so it’s worth checking them out before you book. Highly recommended.\r\n'),
+(2, 3, '4.5', 'This place is great! Atmosphere is chill and cool but the staff is also really friendly. They know what they’re doing and what they’re talking about, and you can tell making the customers happy is their main priority. Food is pretty good, some asian classics and some twists, and for their prices it’s 100% worth it.'),
+(3, 1, '4.7', 'This cozy restaurant has left the best impressions! Hospitable hosts, delicious dishes, beautiful presentation, and wonderful dessert. I recommend to everyone! I would like to come back here again and again.'),
+(4, 2, '4.6', 'It’s a great experience. The ambiance is very welcoming and charming. Amazing food and service. Staff are extremely knowledgeable and make great recommendations.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `RESID` int(11) NOT NULL,
+  `CUSTID` int(11) DEFAULT NULL,
+  `NB` int(11) NOT NULL,
+  `DANDT` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`RESID`, `CUSTID`, `NB`, `DANDT`) VALUES
+(1, 2, 0, '2022-05-14 09:08:00'),
+(2, 2, 0, '2022-05-17 18:06:00'),
+(3, 2, 0, '2022-05-17 18:06:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rest`
+--
+
+CREATE TABLE `rest` (
+  `ADDRESS` varchar(100) DEFAULT NULL,
+  `PHONE` int(11) DEFAULT NULL,
+  `MAXRES` int(11) DEFAULT NULL,
+  `LINKS` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rest`
+--
+
+INSERT INTO `rest` (`ADDRESS`, `PHONE`, `MAXRES`, `LINKS`) VALUES
+('212 Barrington Court New York 33', 3123455, 3, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sad`
+--
+
+CREATE TABLE `sad` (
+  `SADID` int(11) NOT NULL,
+  `SADNAME` char(50) DEFAULT NULL,
+  `USERNAME` varchar(32) DEFAULT NULL,
+  `PASSWORD` varchar(32) DEFAULT NULL,
+  `EMAIL` varchar(70) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sad`
+--
+
+INSERT INTO `sad` (`SADID`, `SADNAME`, `USERNAME`, `PASSWORD`, `EMAIL`) VALUES
+(1, 'sameer', 'sameer', 'sameer', 'sameer');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ADID`);
+
+--
+-- Indexes for table `adv`
+--
+ALTER TABLE `adv`
+  ADD PRIMARY KEY (`ADVID`),
+  ADD KEY `ADVERTISED_FK` (`ITEMID`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`CUSTID`,`ITEMID`),
+  ADD KEY `ITEMCART_FK` (`ITEMID`),
+  ADD KEY `CUSTCART_FK` (`CUSTID`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`CUSTID`);
+
+--
+-- Indexes for table `entity_11`
+--
+ALTER TABLE `entity_11`
+  ADD PRIMARY KEY (`EVENTID`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`ITEMID`),
+  ADD KEY `ITEM_MENU_FK` (`MENUID`);
+
+--
+-- Indexes for table `itemorder`
+--
+ALTER TABLE `itemorder`
+  ADD PRIMARY KEY (`ITEMID`,`ORDERID`),
+  ADD KEY `ITEMORDER_FK` (`ITEMID`),
+  ADD KEY `ITEMORDER2_FK` (`ORDERID`);
+
+--
+-- Indexes for table `itemrating`
+--
+ALTER TABLE `itemrating`
+  ADD PRIMARY KEY (`CUSTID`,`ITEMID`),
+  ADD KEY `Customerss_FK` (`CUSTID`),
+  ADD KEY `itemsss_FK` (`ITEMID`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`MENUID`);
+
+--
+-- Indexes for table `ordertb`
+--
+ALTER TABLE `ordertb`
+  ADD PRIMARY KEY (`ORDERID`),
+  ADD KEY `CUSTORDERS_FK` (`CUSTID`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`RATINGID`),
+  ADD KEY `CUSTRATINGS_FK` (`CUSTID`);
+
+--
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`RESID`),
+  ADD KEY `RESERVED_FK` (`CUSTID`);
+
+--
+-- Indexes for table `sad`
+--
+ALTER TABLE `sad`
+  ADD PRIMARY KEY (`SADID`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `adv`
+--
+ALTER TABLE `adv`
+  ADD CONSTRAINT `FK_ADV_ADVERTISE_ITEM` FOREIGN KEY (`ITEMID`) REFERENCES `item` (`ITEMID`);
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `FK_CUST_CART` FOREIGN KEY (`CUSTID`) REFERENCES `customer` (`CUSTID`),
+  ADD CONSTRAINT `FK_ITEM_CART` FOREIGN KEY (`ITEMID`) REFERENCES `item` (`ITEMID`);
+
+--
+-- Constraints for table `item`
+--
+ALTER TABLE `item`
+  ADD CONSTRAINT `FK_ITEM_ITEM_MENU_MENU` FOREIGN KEY (`MENUID`) REFERENCES `menu` (`MENUID`);
+
+--
+-- Constraints for table `itemorder`
+--
+ALTER TABLE `itemorder`
+  ADD CONSTRAINT `FK_ITEMORDE_ITEMORDER_ITEM` FOREIGN KEY (`ITEMID`) REFERENCES `item` (`ITEMID`),
+  ADD CONSTRAINT `FK_ITEMORDE_ITEMORDER_ORDER` FOREIGN KEY (`ORDERID`) REFERENCES `ordertb` (`ORDERID`);
+
+--
+-- Constraints for table `itemrating`
+--
+ALTER TABLE `itemrating`
+  ADD CONSTRAINT `FK_ITEsaMORDE_ITEMORDER_ITEM` FOREIGN KEY (`ITEMID`) REFERENCES `item` (`ITEMID`),
+  ADD CONSTRAINT `FK_ORDER_CUSasdTORDER_CUSTOMER` FOREIGN KEY (`CUSTID`) REFERENCES `customer` (`CUSTID`);
+
+--
+-- Constraints for table `ordertb`
+--
+ALTER TABLE `ordertb`
+  ADD CONSTRAINT `FK_ORDER_CUSTORDER_CUSTOMER` FOREIGN KEY (`CUSTID`) REFERENCES `customer` (`CUSTID`);
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `FK_RATING_CUSTRATIN_CUSTOMER` FOREIGN KEY (`CUSTID`) REFERENCES `customer` (`CUSTID`);
+
+--
+-- Constraints for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `FK_RESERVAT_RESERVED_CUSTOMER` FOREIGN KEY (`CUSTID`) REFERENCES `customer` (`CUSTID`);
+COMMIT;
